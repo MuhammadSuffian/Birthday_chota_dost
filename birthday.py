@@ -24,11 +24,10 @@ st.set_page_config(
     }
 )
 
-# Hide the streamlit deploy and menu buttons
+# Hide the streamlit menu buttons (but keep the deploy button)
 st.markdown("""
 <style>
 #MainMenu {visibility: hidden;}
-.stDeployButton {display:none;}
 header {visibility: hidden;}
 
 /* Force Light Mode */
