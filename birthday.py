@@ -16,8 +16,50 @@ st.set_page_config(
     page_title="✨ Sana's Special Day ✨",
     page_icon="💖",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
 )
+
+# Hide the streamlit deploy and menu buttons
+st.markdown("""
+<style>
+#MainMenu {visibility: hidden;}
+.stDeployButton {display:none;}
+header {visibility: hidden;}
+
+/* Force Light Mode */
+body [data-testid="stAppViewContainer"], 
+body [data-testid="stSidebar"],
+body [data-testid="stHeader"],
+body [data-testid="stToolbar"] {
+    background-color: #FFFFFF;
+    color: #31333F;
+}
+
+/* Force light mode for all text elements */
+body [data-testid="stMarkdownContainer"] {
+    color: #31333F;
+}
+
+/* Override dark mode toggle functionality */
+.stApp {
+    background-color: #FFFFFF !important;
+}
+
+[data-theme="dark"] {
+    --text-color: #31333F !important;
+    --background-color: #FFFFFF !important;
+    --secondary-background-color: #F0F2F6 !important;
+    --color-primary: #FF4B4B !important;
+    --color-selection-light: rgba(255, 75, 75, 0.5) !important;
+    --color-selection: rgba(255, 75, 75, 0.7) !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Custom CSS for premium animations and styling
 def local_css():
@@ -429,7 +471,7 @@ def is_birthday():
     # Use a specific timezone (e.g., Asia/Karachi for Pakistan Standard Time)
     timezone = pytz.timezone('Asia/Karachi')
     today = datetime.now(timezone).date()
-    return today.month == 4 and today.day == 25
+    return today.month == 4 and today.day == 30
 
 # Calculate time until April 30
 def time_until_birthday():
@@ -522,12 +564,12 @@ def create_floating_image(image_url, size=200, rotation=5, delay=0):
 # Main function
 def main():
     # Add timezone information to the app
-    st.sidebar.markdown("### Celebration Details")
-    st.sidebar.markdown("**Timezone:** Asia/Karachi (Pakistan Standard Time)")
-    st.sidebar.markdown("**Current Date in Selected Timezone:**")
-    timezone = pytz.timezone('Asia/Karachi')
-    current_time = datetime.now(timezone)
-    st.sidebar.markdown(f"{current_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    # st.sidebar.markdown("### Celebration Details")
+    # st.sidebar.markdown("**Timezone:** Asia/Karachi (Pakistan Standard Time)")
+    # st.sidebar.markdown("**Current Date in Selected Timezone:**")
+    # timezone = pytz.timezone('Asia/Karachi')
+    # current_time = datetime.now(timezone)
+    # st.sidebar.markdown(f"{current_time.strftime('%Y-%m-%d %H:%M:%S')}")
     
     local_css()
     generate_confetti()
@@ -549,9 +591,9 @@ def main():
         access_granted = show_premium_countdown()
         
         # Add a backdoor for testing (remove in production)
-        if st.sidebar.checkbox("Preview Birthday Content", value=False):
-            access_granted = True
-            st.sidebar.warning("Preview mode enabled")
+        # if st.sidebar.checkbox("Preview Birthday Content", value=False):
+        #     access_granted = True
+        #     st.sidebar.warning("Preview mode enabled")
         
         if not access_granted:
             # Add footer
