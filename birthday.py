@@ -473,7 +473,7 @@ def is_birthday():
     # Use a specific timezone (e.g., Asia/Karachi for Pakistan Standard Time)
     timezone = pytz.timezone('Asia/Karachi')
     today = datetime.now(timezone).date()
-    return today.month == 4 and today.day == 25
+    return today.month == 5 and today.day == 13
 
 # Calculate time until May 13
 def time_until_birthday():
